@@ -18,7 +18,7 @@
 
 .header__content {
 	text-align: center;
-	max-width: 600px;
+	max-width: 640px;
 	margin: auto;
 }
 
@@ -32,4 +32,9 @@
     margin: 0 auto;
     padding: 0.5em 0 1em;
     color: #b0b0c8;
+	font-size: 16px;
+
+	@media (min-width: 800px) {
+		font-size: 19px;
+	}
 }

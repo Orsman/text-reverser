@@ -6,7 +6,7 @@ const textReverserComp = {
 	controller: () => {
 		console.log('component started!');
 	},
-	template: '<h1></h1>'
+	templateUrl: 'text-reverser/text-reverser-tpl.html'
 };
 
 export default textReverserComp;

@@ -7,6 +7,6 @@ import textReverser from './text-reverser/text-reverser.component';
 
 angular
 	// .module('ws.textReverser', ['ngSanitize', 'wordsmith.textReverser'])
-	.module('ws.textReverser', ['ngSanitize'])
+	.module('wordsmith.textReverser', ['ngSanitize'])
 	.component('textReverser', textReverser)
 ;

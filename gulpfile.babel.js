@@ -15,6 +15,8 @@ import sass from 'gulp-sass';
 import uglify from 'gulp-uglify';
 import inject from 'gulp-inject';
 import minifyCSS from 'gulp-minify-css';
+import minifyHtml from 'gulp-minify-html';
+import ngTemplateCache from 'gulp-angular-templatecache';
 import browserSync from 'browser-sync';
 
 const appName = 'wordsmith.textReverser';
@@ -28,6 +30,7 @@ gulp.task('build', buildIndexHtml);
 function buildIndexHtml() {
     const buildSources = gulp.src([
         './build/app-*.js',
+        './build/templates-*.js',
         './build/style*.css'
     ]);
 
@@ -112,6 +115,25 @@ gulp.task('sass-prod', () => {
 });
 
 /**
+ * @desc Minify and create $templateCache from the html templates
+ * When using minifyHtml I can make sure all comments the team has made in our
+ * source code will not be pushed out to production.
+ */
+gulp.task('templates', () => {
+  return del('./build/templates*.js').then(() => {
+    gulp.src(['./src/js/**/*.html'])
+      .pipe(minifyHtml({
+        empty: true,
+        spare: true
+      }))
+      .pipe(ngTemplateCache({module: appName}))
+      .pipe(rev()) // Add unique name
+      .pipe(gulp.dest('./build'))
+      .on('end', buildIndexHtml);
+  });
+});
+
+/**
  * @desc Watch files and build
  */
 gulp.task('watch', ['init'], () => {
@@ -121,7 +143,8 @@ gulp.task('watch', ['init'], () => {
 
   gulp.watch('./src/styles/**/*.scss', ['sass']);
   gulp.watch(['./src/js/**/*.js'], ['js']);
+  gulp.watch(['./src/js/**/*.html'], ['templates']);
 });
 
-gulp.task('init', ['js', 'sass-init']);
-gulp.task('prod', ['js', 'sass-prod']);
+gulp.task('init', ['js', 'templates', 'sass-init']);
+gulp.task('prod', ['js', 'templates', 'sass-prod']);

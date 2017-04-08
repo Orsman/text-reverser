@@ -1,0 +1,31 @@
+
+
+.text-reverser__form {
+	position: relative;
+	display: block;
+	max-width: 700px;
+	margin: 30px auto;
+	width: 100%;
+}
+
+.text-reverser__legend {
+	text-transform: uppercase;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: lighten(#4d4d6d, 10%);
+	padding: 5px 8px;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.text-reverser__textarea {
+	padding: 33px 10px 10px;
+	border-radius: 3px;
+	border: none;
+	outline: none;
+	width: 100%;
+	resize: none;
+	height: 150px;
+}
