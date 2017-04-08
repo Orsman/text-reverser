@@ -1,7 +1,8 @@
 
 import textReverserComp from './text-reverser.component';
 
-angular
-	.module('wordsmith.textReverser', [])
-	.component('textReverser', textReverserComp)
-;
+let textReverser = angular.module('wordsmith.textReverser', []);
+
+textReverser.component('textReverser', textReverserComp);
+
+export default textReverser;
