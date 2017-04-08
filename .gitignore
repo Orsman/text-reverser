@@ -1,0 +1,5 @@
+/node_modules/*
+.DS_store
+/build/app*.js
+/build/templates*.js
+/build/style*.css

@@ -1,0 +1,4 @@
+
+1. Clone repo.
+2. `npm install` or `yarn`
+2. `gulp watch`
