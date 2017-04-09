@@ -1,23 +1,13 @@
 
 const textReverserComp = {
-	bindings: {
-		input: '<'
-	},
-	controller: function() {
-        const ctrl = this;
+	controller: function(TextReverserService) {
         this.output = '';
-        this.reverse = reverse;
 
-        function reverse(input) {
-            const array = input.split(' ');
-            let newArr = [];
+        this.reverse = (input) => {
 
-            for (var i = 0; i < array.length; i++) {
-                newArr.push( array[i].split('').reverse().join('') );
-            }
+            this.output = TextReverserService.reverse(input);
 
-            ctrl.output = newArr.join(' ');
-        }
+        };
     },
 	templateUrl: 'text-reverser-tpl.html'
 };

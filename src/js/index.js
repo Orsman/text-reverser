@@ -2,9 +2,9 @@ import angular from 'angular';
 import ngSanitize from 'angular-sanitize';
 
 import textReverserComponent from './text-reverser.component';
-// import textReverserService from './text-reverser.service';
+import textReverserService from './text-reverser.service';
 
 angular.module('textReverser', ['ngSanitize'])
-    // .service('TextReverserService', textReverserService)
+    .service('TextReverserService', textReverserService)
     .component('textReverser', textReverserComponent)
 ;
