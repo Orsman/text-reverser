@@ -19,7 +19,7 @@ import minifyHtml from 'gulp-minify-html';
 import ngTemplateCache from 'gulp-angular-templatecache';
 import browserSync from 'browser-sync';
 
-const appName = 'wordsmith.textReverser';
+const appName = 'textReverser';
 
 /**
  * @desc Grab all newly created files and injectop
@@ -49,7 +49,7 @@ function buildIndexHtml() {
 gulp.task('js', () => {
     return del('./build/app*.js').then(() => {
         return rollup({
-            entry: './src/js/app.js',
+            entry: './src/js/index.js',
             plugins: [
                 resolve(),
                 commonjs(),
@@ -66,6 +66,7 @@ gulp.task('js', () => {
                 })
             ],
             format: 'umd',
+            moduleName: 'wordsmith',
             globals: {
                 angular: 'angular'
             }

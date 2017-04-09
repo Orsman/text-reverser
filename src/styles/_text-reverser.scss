@@ -8,6 +8,18 @@
 	width: 100%;
 }
 
+.text-reverser__arrow {
+    display: block;
+    width: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    transform: rotate(90deg);
+
+    path {
+        fill: #b0b0c8;
+    }
+}
+
 .text-reverser__legend {
 	text-transform: uppercase;
 	position: absolute;
@@ -18,6 +30,7 @@
 	text-transform: uppercase;
 	font-size: 12px;
 	font-weight: 600;
+    border-top-left-radius: 3px;
 }
 
 .text-reverser__textarea {
@@ -27,5 +40,9 @@
 	outline: none;
 	width: 100%;
 	resize: none;
-	height: 150px;
+	height: 100px;
+
+    &--output {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
 }
