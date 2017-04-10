@@ -5,7 +5,8 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-        'src/js/index.js',
+        // 'src/js/index.js',
+        'build/app-*.js',
         { pattern: 'node_modules/angular-mocks/angular-mocks.js', watch: false },
         'src/js/*.spec.js'
     ],
