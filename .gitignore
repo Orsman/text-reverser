@@ -3,3 +3,4 @@
 /build/app*.js
 /build/templates*.js
 /build/style*.css
+/build/index.html
