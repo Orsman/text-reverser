@@ -9,7 +9,7 @@ class textReverserService {
         const array = input.split(' ');
         let newArr = [];
 
-        for (var i = 0; i < array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
             newArr.push( array[i].split('').reverse().join('') );
         }
 

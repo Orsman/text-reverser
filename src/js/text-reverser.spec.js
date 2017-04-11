@@ -1,18 +1,18 @@
 
+import TextReverserService from './text-reverser.service';
+
 describe('Text reverser service', function() {
 
-	var TextReverserService;
-	var testInput = 'This is a product for Wordsmith';
-	var testOutput = 'sihT si a tcudorp rof htimsdroW';
+	let service;
+	let testInput = 'This is a product for Wordsmith';
+	let testOutput = 'sihT si a tcudorp rof htimsdroW';
 
-	beforeEach(angular.mock.module('textReverser'));
-
-	beforeEach(inject(function(_TextReverserService_) {
-		TextReverserService = _TextReverserService_;
-    }));
+	beforeEach(function() {
+        service = new TextReverserService();
+    });
 
 	it('should reverse a word/sentence', function() {
-		expect(TextReverserService.reverse(testInput)).toEqual(testOutput);
+		expect(service.reverse(testInput)).toEqual(testOutput);
 	});
 
 });
