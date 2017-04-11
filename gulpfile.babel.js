@@ -1,5 +1,7 @@
 'use strict';
 
+const appName = 'textReverser';
+
 import gulp from 'gulp';
 import del from 'del';
 import rollup from 'rollup-stream';
@@ -18,13 +20,8 @@ import minifyCSS from 'gulp-minify-css';
 import minifyHtml from 'gulp-minify-html';
 import ngTemplateCache from 'gulp-angular-templatecache';
 import browserSync from 'browser-sync';
+import karma from 'karma';
 
-const appName = 'textReverser';
-
-/**
- * @desc Grab all newly created files and injectop
- * all of them into the new index.html
- */
 gulp.task('build', buildIndexHtml);
 
 function buildIndexHtml() {
@@ -43,9 +40,6 @@ function buildIndexHtml() {
         .on('end', browserSync.reload);
 }
 
-/**
- * @desc Minify and bundle the app's JavaScript
- */
 gulp.task('js', () => {
     return del('./build/app*.js').then(() => {
         return rollup({
@@ -80,9 +74,6 @@ gulp.task('js', () => {
     });
 });
 
-/**
- * @desc Minify and bundle the app's CSS
- */
 gulp.task('sass', () => {
   return del('./build/style*.css').then(() => {
     gulp.src('./src/styles/style.scss')
@@ -92,9 +83,6 @@ gulp.task('sass', () => {
   });
 });
 
-/**
- * @desc Minify and bundle the app's CSS
- */
 gulp.task('sass-init', () => {
   return del('./build/style*.css').then(() => {
     gulp.src('./src/styles/style.scss')
@@ -115,11 +103,6 @@ gulp.task('sass-prod', () => {
   });
 });
 
-/**
- * @desc Minify and create $templateCache from the html templates
- * When using minifyHtml I can make sure all comments the team has made in our
- * source code will not be pushed out to production.
- */
 gulp.task('templates', () => {
   return del('./build/templates*.js').then(() => {
     gulp.src(['./src/js/**/*.html'])
@@ -128,15 +111,19 @@ gulp.task('templates', () => {
         spare: true
       }))
       .pipe(ngTemplateCache({module: appName}))
-      .pipe(rev()) // Add unique name
+      .pipe(rev())
       .pipe(gulp.dest('./build'))
       .on('end', buildIndexHtml);
   });
 });
 
-/**
- * @desc Watch files and build
- */
+gulp.task('test', (done) => {
+    new karma.Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: false
+    }, done).start();
+});
+
 gulp.task('watch', ['init'], () => {
     browserSync.init({
         server: "./build"

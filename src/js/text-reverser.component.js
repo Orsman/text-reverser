@@ -4,7 +4,7 @@ const textReverserComp = {
         this.output = '';
 
         this.reverse = (input) => {
-
+            
             this.output = TextReverserService.reverse(input);
 
         };
