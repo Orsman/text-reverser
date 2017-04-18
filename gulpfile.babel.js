@@ -125,7 +125,7 @@ gulp.task('test', (done) => {
 });
 
 
-gulp.task('start', ['init'], (done) => {
+gulp.task('start', ['prod'], (done) => {
 
     app.listen(3000, () => {
        console.log('Server running at http://localhost:3000');
